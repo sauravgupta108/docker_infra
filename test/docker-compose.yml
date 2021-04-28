@@ -1,0 +1,9 @@
+version: "3"
+services:
+  test_server_1:
+    restart: always
+    build: 
+      context: ./testfile
+
+    container_name: test
+    

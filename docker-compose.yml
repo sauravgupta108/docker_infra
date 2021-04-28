@@ -1,0 +1,59 @@
+version: "3"
+services:
+  app_server_1:
+    restart: ${RESTART_POLICY}
+    build: 
+      context: ./app_server_1/
+      args:
+        - username=${USER_NAME}
+        - password=${PASSWORD}
+        - ssh_default_port=${SSH_DEFAULT_PORT}
+        - ssh_port=${SSH_PORT}
+        - public_key_path=${PUBLIC_KEY_PATH}
+    
+    container_name: app_server_1
+    
+    networks:
+      allinone:
+        ipv4_address: $APP_SERVER_1_IP
+
+  app_server_2:
+    restart: ${RESTART_POLICY}
+    build: 
+      context: ./app_server_2/
+      args:
+        - username=${USER_NAME}
+        - password=${PASSWORD}
+        - ssh_default_port=${SSH_DEFAULT_PORT}
+        - ssh_port=${SSH_PORT}
+        - public_key_path=${PUBLIC_KEY_PATH}
+    
+    container_name: app_server_2
+    
+    networks:
+      allinone:
+        ipv4_address: $APP_SERVER_2_IP
+
+  app_server_3:
+    restart: ${RESTART_POLICY}
+    build: 
+      context: ./app_server_3/
+      args:
+        - username=${USER_NAME}
+        - password=${PASSWORD}
+        - ssh_default_port=${SSH_DEFAULT_PORT}
+        - ssh_port=${SSH_PORT}
+        - public_key_path=${PUBLIC_KEY_PATH}
+    
+    container_name: app_server_3
+    
+    networks:
+      allinone:
+        ipv4_address: $APP_SERVER_3_IP
+
+networks:
+  allinone:
+    ipam:
+      driver: default
+      config:
+        - subnet: $SUBNET
